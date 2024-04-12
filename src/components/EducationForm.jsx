@@ -1,35 +1,11 @@
-import { useState } from "react";
-export default function Education() {
-  const [school, setSchool] = useState("");
-  const [degree, setDegree] = useState("");
-
-  const [startYear, setStartYear] = useState("");
-
-  const [endYear, setEndYear] = useState("");
-
-  const [GPA, setGPA] = useState("");
-
-  function handleChange(e) {
-    const { id, value } = e.target;
-
-    switch (id) {
-      case "school":
-        setSchool(value);
-        break;
-      case "degree":
-        setDegree(value);
-        break;
-      case "start-year":
-        setStartYear(value);
-        break;
-      case "end-year":
-        setEndYear(value);
-        break;
-      case "gpa":
-        setGPA(value);
-        break;
-    }
-  }
+export default function EducationForm({
+  school,
+  degree,
+  startYear,
+  endYear,
+  GPA,
+  handleChange,
+}) {
   return (
     <div>
       <input
