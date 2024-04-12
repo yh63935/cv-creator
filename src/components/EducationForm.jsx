@@ -1,43 +1,35 @@
-export default function EducationForm({
-  school,
-  degree,
-  startYear,
-  endYear,
-  GPA,
-  handleChange,
-}) {
+export default function EducationForm({ educationData, handleChange }) {
   return (
     <div>
       <input
         type="text"
         id="school"
         onChange={handleChange}
-        value={school}
+        value={educationData.school}
       ></input>
       <input
         type="text"
         id="degree"
         onChange={handleChange}
-        value={degree}
+        value={educationData.degree}
       ></input>
       <input
         type="date"
-        id="start-year"
+        id="startYear"
         onChange={handleChange}
-        value={startYear}
+        value={educationData.startYear}
       ></input>
       <input
         type="date"
         id="end-year"
         onChange={handleChange}
-        value={endYear}
+        value={educationData.endYear}
       ></input>
       <input
         type="number"
         id="gpa"
-        step="0.01"
         onChange={handleChange}
-        value={GPA}
+        value={educationData.gpa}
       ></input>
     </div>
   );
