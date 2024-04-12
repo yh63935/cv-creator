@@ -21,7 +21,7 @@ export default function EducationForm({ educationData, handleChange }) {
       ></input>
       <input
         type="date"
-        id="end-year"
+        id="endYear"
         onChange={handleChange}
         value={educationData.endYear}
       ></input>
