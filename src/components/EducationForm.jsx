@@ -1,11 +1,44 @@
-export default function Education() {
+export default function EducationForm({
+  school,
+  degree,
+  startYear,
+  endYear,
+  GPA,
+  handleChange,
+}) {
   return (
     <div>
-      <input type="text" id="school"></input>
-      <input type="text" id="degree"></input>
-      <input type="date" id="start-year"></input>
-      <input type="date" id="end-year"></input>
-      <input type="number" id="gpa" step="0.01"></input>
+      <input
+        type="text"
+        id="school"
+        onChange={handleChange}
+        value={school}
+      ></input>
+      <input
+        type="text"
+        id="degree"
+        onChange={handleChange}
+        value={degree}
+      ></input>
+      <input
+        type="date"
+        id="start-year"
+        onChange={handleChange}
+        value={startYear}
+      ></input>
+      <input
+        type="date"
+        id="end-year"
+        onChange={handleChange}
+        value={endYear}
+      ></input>
+      <input
+        type="number"
+        id="gpa"
+        step="0.01"
+        onChange={handleChange}
+        value={GPA}
+      ></input>
     </div>
   );
 }
