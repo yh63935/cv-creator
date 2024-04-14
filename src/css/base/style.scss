@@ -1,2 +1,10 @@
 @import "./normalize.scss";
 @import "./reset.scss";
+
+form {
+  display: none;
+}
+
+.edit-mode {
+  display: block;
+}
