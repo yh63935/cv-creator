@@ -1,15 +1,27 @@
 import { useState } from "react";
-export default function EducationForm({ educationData, handleChange }) {
+export default function EducationForm({ onSave }) {
   const [isSaved, setIsSaved] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [educationData, setEducationData] = useState({
+    school: "",
+    degree: "",
+    startYear: "",
+    endYear: "",
+    gpa: "",
+  });
+
+  function handleChange(e) {
+    const { id, value } = e.target;
+
+    setEducationData({
+      ...educationData,
+      [id]: value,
+    });
+  }
 
   function onEdit() {
     setIsEditing(true);
-  }
-
-  function onSave() {
-    setIsEditing(false);
   }
 
   function onCancel() {
@@ -20,11 +32,15 @@ export default function EducationForm({ educationData, handleChange }) {
     setIsEditing(false);
   }
 
+  function onSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
     <div>
       <p hidden={isEditing}>This will show if not editing </p>
       <button onClick={onEdit}>Edit information</button>
-      <form>
+      <form onSubmit={onSubmit}>
         <input
           type="text"
           id="school"
@@ -56,7 +72,7 @@ export default function EducationForm({ educationData, handleChange }) {
           value={educationData.gpa}
         ></input>
         <button onClick={onCancel}>Cancel</button>
-        <button onClick={onSave}>Save</button>
+        <button onClick={() => onSave(educationData)}>Save</button>
         <button onClick={onDelete}>Delete</button>
       </form>
     </div>
