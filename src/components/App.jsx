@@ -3,31 +3,17 @@ import EducationForm from "./EducationForm";
 import EducationInfo from "./EducationInfo";
 import { useState } from "react";
 function App() {
-  const [educationData, setEducationData] = useState({
-    school: "",
-    degree: "",
-    startYear: "",
-    endYear: "",
-    gpa: "",
-  });
+  const [savedData, setSavedData] = useState([]);
 
-  function handleChange(e) {
-    const { id, value } = e.target;
-
-    setEducationData({
-      ...educationData,
-      [id]: value,
-    });
+  function handleSave(formData) {
+    setSavedData([...savedData, formData]);
   }
 
   return (
     <>
       <PersonalInfo />
-      <EducationForm
-        educationData={educationData}
-        handleChange={handleChange}
-      />
-      <EducationInfo educationData={educationData} />
+      <EducationForm onSave={handleSave} />
+      <EducationInfo educationData={savedData} />
     </>
   );
 }
