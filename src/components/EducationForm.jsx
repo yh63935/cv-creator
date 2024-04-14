@@ -1,6 +1,7 @@
 export default function EducationForm({ educationData, handleChange }) {
   return (
     <div>
+      <form>
       <input
         type="text"
         id="school"
@@ -31,6 +32,10 @@ export default function EducationForm({ educationData, handleChange }) {
         onChange={handleChange}
         value={educationData.gpa}
       ></input>
+        <button>Cancel</button>
+        <button>Save</button>
+        <button>Delete</button>
+      </form>
     </div>
   );
 }
