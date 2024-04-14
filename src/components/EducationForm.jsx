@@ -38,7 +38,6 @@ export default function EducationForm({ onSave }) {
 
   return (
     <div>
-      <p hidden={isEditing}>This will show if not editing </p>
       <button onClick={onEdit}>Edit information</button>
       <form onSubmit={onSubmit} className={isEditing && "edit-mode"}>
         <input
