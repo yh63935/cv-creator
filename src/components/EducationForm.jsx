@@ -39,7 +39,7 @@ export default function EducationForm({ onSave }) {
   return (
     <div>
       <button onClick={onEdit}>Edit information</button>
-      <form onSubmit={onSubmit} className={isEditing && "edit-mode"}>
+      <form onSubmit={onSubmit} className={isEditing ? "edit-mode" : ""}>
         <input
           type="text"
           id="school"
