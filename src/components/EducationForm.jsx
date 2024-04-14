@@ -40,7 +40,7 @@ export default function EducationForm({ onSave }) {
     <div>
       <p hidden={isEditing}>This will show if not editing </p>
       <button onClick={onEdit}>Edit information</button>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={isEditing && "edit-mode"}>
         <input
           type="text"
           id="school"
