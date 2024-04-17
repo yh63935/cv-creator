@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 export default function EducationForm({ onSave }) {
   const [isSaved, setIsSaved] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [educationData, setEducationData] = useState({
+    id: uuidv4(),
     school: "",
     degree: "",
     startYear: "",
