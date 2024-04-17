@@ -1,10 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
 export default function EducationInfo({ educationData }) {
   return (
     <ul>
       {educationData.map((education) => {
         return (
-          <li key={uuidv4()}>
+          <li key={education.id}>
             <h2>Education</h2>
             <h3>{education.school}</h3>
             <p>{education.degree}</p>
