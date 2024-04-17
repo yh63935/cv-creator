@@ -27,7 +27,8 @@ export default function EducationForm({ onSave }) {
     setIsEditing(true);
   }
 
-  function onCancel() {
+  function onCancel(e) {
+    e.preventDefault();
     setIsEditing(false);
   }
 
@@ -37,6 +38,7 @@ export default function EducationForm({ onSave }) {
 
   function onSubmit(e) {
     e.preventDefault();
+    onSave(educationData);
   }
 
   return (
@@ -74,7 +76,7 @@ export default function EducationForm({ onSave }) {
           value={educationData.gpa}
         ></input>
         <button onClick={onCancel}>Cancel</button>
-        <button onClick={() => onSave(educationData)}>Save</button>
+        <button type="submit">Save</button>
         <button onClick={onDelete}>Delete</button>
       </form>
     </div>
