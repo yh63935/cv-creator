@@ -75,8 +75,9 @@ export default function EducationForm({ onSave }) {
           onChange={handleChange}
           value={educationData.gpa}
         ></input>
-        <button onClick={onCancel}>Cancel</button>
         <button type="submit">Save</button>
+        <button onClick={onCancel}>Cancel</button>
+
         <button onClick={onDelete}>Delete</button>
       </form>
     </div>
