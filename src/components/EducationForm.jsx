@@ -76,8 +76,6 @@ export default function EducationForm({ onSave }) {
         ></input>
         <button type="submit">Save</button>
         <button onClick={onCancel}>Cancel</button>
-
-        <button onClick={onDelete}>Delete</button>
       </form>
     </div>
   );
