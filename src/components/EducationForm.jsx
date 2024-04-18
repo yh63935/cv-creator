@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 export default function EducationForm({ onSave }) {
-  const [isSaved, setIsSaved] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
   const [educationData, setEducationData] = useState({
     school: "",
     degree: "",
@@ -30,10 +28,6 @@ export default function EducationForm({ onSave }) {
     setIsEditing(false);
   }
 
-  function onDelete() {
-    setIsEditing(false);
-  }
-
   function onSubmit(e) {
     e.preventDefault();
     const educationDataWithId = { ...educationData, id: uuidv4() };
@@ -42,7 +36,7 @@ export default function EducationForm({ onSave }) {
 
   return (
     <div>
-      <button onClick={onEdit}>Edit information</button>
+      <button onClick={onEdit}>Add Education</button>
       <form onSubmit={onSubmit} className={isEditing ? "edit-mode" : ""}>
         <input
           type="text"
