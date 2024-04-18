@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
 export default function EducationForm({ onSave }) {
   const [isSaved, setIsSaved] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [educationData, setEducationData] = useState({
-    id: uuidv4(),
     school: "",
     degree: "",
     startYear: "",
@@ -38,7 +36,8 @@ export default function EducationForm({ onSave }) {
 
   function onSubmit(e) {
     e.preventDefault();
-    onSave(educationData);
+    const educationDataWithId = { ...educationData, id: uuidv4() };
+    onSave(educationDataWithId);
   }
 
   return (
@@ -75,9 +74,8 @@ export default function EducationForm({ onSave }) {
           onChange={handleChange}
           value={educationData.gpa}
         ></input>
-        <button onClick={onCancel}>Cancel</button>
         <button type="submit">Save</button>
-        <button onClick={onDelete}>Delete</button>
+        <button onClick={onCancel}>Cancel</button>
       </form>
     </div>
   );
