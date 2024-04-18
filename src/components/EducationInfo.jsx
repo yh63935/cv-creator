@@ -10,6 +10,7 @@ export default function EducationInfo({ onDelete, educationData }) {
             <p>{education.startYear}</p>
             <p>{education.endYear}</p>
             <p>{education.gpa} </p>
+            <button>Edit</button>
             <button onClick={() => onDelete(education.id)}>Delete</button>
           </li>
         );
