@@ -9,11 +9,14 @@ function App() {
     setSavedData([...savedData, formData]);
   }
 
+  function handleDelete(id) {
+    setSavedData(savedData.filter((record) => record.id !== id));
+  }
   return (
     <>
       <PersonalInfo />
       <EducationForm onSave={handleSave} />
-      <EducationInfo educationData={savedData} />
+      <EducationInfo onDelete={handleDelete} educationData={savedData} />
     </>
   );
 }
