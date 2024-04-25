@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-export default function EducationForm({ onSave }) {
+export default function EducationForm({ onAdd }) {
   const [isEditing, setIsEditing] = useState(false);
   const [educationEntry, setEducationEntry] = useState({
     school: "",
@@ -30,8 +30,12 @@ export default function EducationForm({ onSave }) {
 
   function onSubmit(e) {
     e.preventDefault();
+
+    // Add a unique id to the education entry
     const educationEntryWithId = { ...educationEntry, id: uuidv4() };
-    onSave(educationEntryWithId);
+    onAdd(educationEntryWithId);
+
+    // Clear input values
     setEducationEntry({
       school: "",
       degree: "",
