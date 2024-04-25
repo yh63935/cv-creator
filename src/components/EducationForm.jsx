@@ -32,6 +32,13 @@ export default function EducationForm({ onSave }) {
     e.preventDefault();
     const educationEntryWithId = { ...educationEntry, id: uuidv4() };
     onSave(educationEntryWithId);
+    setEducationEntry({
+      school: "",
+      degree: "",
+      startYear: "",
+      endYear: "",
+      gpa: "",
+    });
   }
 
   return (
