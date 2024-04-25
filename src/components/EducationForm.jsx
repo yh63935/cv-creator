@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 export default function EducationForm({ onSave }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [educationData, setEducationData] = useState({
+  const [educationFormData, setEducationFormData] = useState({
     school: "",
     degree: "",
     startYear: "",
@@ -13,8 +13,8 @@ export default function EducationForm({ onSave }) {
   function handleChange(e) {
     const { id, value } = e.target;
 
-    setEducationData({
-      ...educationData,
+    setEducationFormData({
+      ...educationFormData,
       [id]: value,
     });
   }
@@ -30,8 +30,8 @@ export default function EducationForm({ onSave }) {
 
   function onSubmit(e) {
     e.preventDefault();
-    const educationDataWithId = { ...educationData, id: uuidv4() };
-    onSave(educationDataWithId);
+    const educationFormDataWithId = { ...educationFormData, id: uuidv4() };
+    onSave(educationFormDataWithId);
   }
 
   return (
@@ -42,31 +42,31 @@ export default function EducationForm({ onSave }) {
           type="text"
           id="school"
           onChange={handleChange}
-          value={educationData.school}
+          value={educationFormData.school}
         ></input>
         <input
           type="text"
           id="degree"
           onChange={handleChange}
-          value={educationData.degree}
+          value={educationFormData.degree}
         ></input>
         <input
           type="date"
           id="startYear"
           onChange={handleChange}
-          value={educationData.startYear}
+          value={educationFormData.startYear}
         ></input>
         <input
           type="date"
           id="endYear"
           onChange={handleChange}
-          value={educationData.endYear}
+          value={educationFormData.endYear}
         ></input>
         <input
           type="number"
           id="gpa"
           onChange={handleChange}
-          value={educationData.gpa}
+          value={educationFormData.gpa}
         ></input>
         <button type="submit">Save</button>
         <button onClick={onCancel}>Cancel</button>
