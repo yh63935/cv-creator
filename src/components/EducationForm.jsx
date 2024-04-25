@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 export default function EducationForm({ onSave }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [educationData, setEducationData] = useState({
+  const [educationEntry, setEducationEntry] = useState({
     school: "",
     degree: "",
     startYear: "",
@@ -13,8 +13,8 @@ export default function EducationForm({ onSave }) {
   function handleChange(e) {
     const { id, value } = e.target;
 
-    setEducationData({
-      ...educationData,
+    setEducationEntry({
+      ...educationEntry,
       [id]: value,
     });
   }
@@ -30,8 +30,15 @@ export default function EducationForm({ onSave }) {
 
   function onSubmit(e) {
     e.preventDefault();
-    const educationDataWithId = { ...educationData, id: uuidv4() };
-    onSave(educationDataWithId);
+    const educationEntryWithId = { ...educationEntry, id: uuidv4() };
+    onSave(educationEntryWithId);
+    setEducationEntry({
+      school: "",
+      degree: "",
+      startYear: "",
+      endYear: "",
+      gpa: "",
+    });
   }
 
   return (
@@ -42,31 +49,31 @@ export default function EducationForm({ onSave }) {
           type="text"
           id="school"
           onChange={handleChange}
-          value={educationData.school}
+          value={educationEntry.school}
         ></input>
         <input
           type="text"
           id="degree"
           onChange={handleChange}
-          value={educationData.degree}
+          value={educationEntry.degree}
         ></input>
         <input
           type="date"
           id="startYear"
           onChange={handleChange}
-          value={educationData.startYear}
+          value={educationEntry.startYear}
         ></input>
         <input
           type="date"
           id="endYear"
           onChange={handleChange}
-          value={educationData.endYear}
+          value={educationEntry.endYear}
         ></input>
         <input
           type="number"
           id="gpa"
           onChange={handleChange}
-          value={educationData.gpa}
+          value={educationEntry.gpa}
         ></input>
         <button type="submit">Save</button>
         <button onClick={onCancel}>Cancel</button>
