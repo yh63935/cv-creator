@@ -23,7 +23,7 @@ export default function EducationForm({ onCancel, onSave }) {
 
     // Add a unique id to the education entry
     const educationEntryWithId = { ...educationEntry, id: uuidv4() };
-    onAdd(educationEntryWithId);
+    onSave(educationEntryWithId);
 
     // Clear input values
     setEducationEntry({
