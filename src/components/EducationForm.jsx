@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-export default function EducationForm({ onAdd }) {
-  const [isEditing, setIsEditing] = useState(false);
+export default function EducationForm({ onCancel, onSave }) {
   const [educationEntry, setEducationEntry] = useState({
     school: "",
     degree: "",
@@ -17,15 +16,6 @@ export default function EducationForm({ onAdd }) {
       ...educationEntry,
       [id]: value,
     });
-  }
-
-  function onEdit() {
-    setIsEditing(true);
-  }
-
-  function onCancel(e) {
-    e.preventDefault();
-    setIsEditing(false);
   }
 
   function onSubmit(e) {

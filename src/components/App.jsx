@@ -4,9 +4,8 @@ import EducationInfo from "./EducationInfo";
 import { useState } from "react";
 function App() {
   const [savedData, setSavedData] = useState([]);
-
-  function handleAdd(id, formData) {
-    // if savedData has the id, then update the data of that id
+  const [isEditing, setIsEditing] = useState(false);
+  const [editMode, setEditMode] = useState("add"); //'add' or 'update'
     setSavedData(
       savedData.map((record) => {
         if (record.id === id) {
@@ -19,6 +18,11 @@ function App() {
 
   function handleDelete(id) {
     setSavedData(savedData.filter((record) => record.id !== id));
+  }
+
+  function handleCancel(e) {
+    e.preventDefault();
+    setIsEditing(false);
   }
 
   return (
