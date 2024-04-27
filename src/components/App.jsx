@@ -24,8 +24,8 @@ function App() {
   return (
     <>
       <PersonalInfo />
-      <EducationForm onAdd={handleAdd} />
-      <EducationInfo onDelete={handleDelete} educationData={savedData} />
+      <button onClick={handleAdd}>Add Education</button>
+      {isEditing && (
     </>
   );
 }
