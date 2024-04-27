@@ -2,6 +2,7 @@ import PersonalInfo from "./personal-info/PersonalInfo";
 import EducationForm from "./EducationForm";
 import EducationInfo from "./EducationInfo";
 import { useState } from "react";
+
 function App() {
   const [savedData, setSavedData] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -16,14 +17,14 @@ function App() {
       // If edit mode is update, update data when saving
       // If savedData has the same ID as the one being edited, update the entry with the new form data
       // Otherwise, return the original entry
-    setSavedData(
-      savedData.map((record) => {
+      setSavedData(
+        savedData.map((record) => {
           if (record.id === editId) {
-          return formData;
-        }
-        return record;
-      })
-    );
+            return formData;
+          }
+          return record;
+        })
+      );
     }
     setIsEditing(false);
   }
@@ -52,7 +53,15 @@ function App() {
     <>
       <PersonalInfo />
       <button onClick={handleAdd}>Add Education</button>
-      {isEditing && (
+      {(isEditing && (
+        <EducationForm onCancel={handleCancel} onSave={handleSave} />
+      )) || (
+        <EducationInfo
+          onUpdate={handleUpdate}
+          onDelete={handleDelete}
+          educationData={savedData}
+        />
+      )}
     </>
   );
 }
