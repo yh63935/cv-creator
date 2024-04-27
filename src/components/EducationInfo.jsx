@@ -1,4 +1,4 @@
-export default function EducationInfo({ onEdit, onDelete, educationData }) {
+export default function EducationInfo({ onUpdate, onDelete, educationData }) {
   return (
     <ul>
       {educationData.map((education) => {
@@ -10,7 +10,7 @@ export default function EducationInfo({ onEdit, onDelete, educationData }) {
             <p>{education.startYear}</p>
             <p>{education.endYear}</p>
             <p>{education.gpa} </p>
-            <button onClick={onEdit}>Edit</button>
+            <button onClick={() => onUpdate(education.id)}>Edit</button>
             <button onClick={() => onDelete(education.id)}>Delete</button>
           </li>
         );
