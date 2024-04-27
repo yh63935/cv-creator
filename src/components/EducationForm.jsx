@@ -47,8 +47,7 @@ export default function EducationForm({ onAdd }) {
 
   return (
     <div>
-      <button onClick={onEdit}>Add Education</button>
-      <form onSubmit={onSubmit} className={isEditing ? "edit-mode" : ""}>
+      <form onSubmit={onSubmit}>
         <input
           type="text"
           id="school"
