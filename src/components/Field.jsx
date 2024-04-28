@@ -1,4 +1,4 @@
-// Field component that renders a div with label and input based on label, value props
+// Field component that renders a div with label and input based on label, type, value, handleChange props
 export default function Field({ label, type, value, handleChange }) {
   return (
     <div>
