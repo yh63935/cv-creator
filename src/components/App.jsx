@@ -1,5 +1,5 @@
 import PersonalInfo from "./personal-info/PersonalInfo";
-import EducationForm from "./EducationForm";
+import Form from "./Form";
 import EducationInfo from "./EducationInfo";
 import { useState } from "react";
 
@@ -53,9 +53,7 @@ function App() {
     <>
       <PersonalInfo />
       <button onClick={handleAdd}>Add Education</button>
-      {(isEditing && (
-        <EducationForm onCancel={handleCancel} onSave={handleSave} />
-      )) || (
+      {(isEditing && <Form onCancel={handleCancel} onSave={handleSave} />) || (
         <EducationInfo
           onUpdate={handleUpdate}
           onDelete={handleDelete}
