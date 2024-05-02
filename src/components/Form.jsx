@@ -35,7 +35,25 @@ export default function Form({ onCancel, onSave }) {
       gpa: "",
     });
   }
-
+  const fieldProps = [
+    {
+      type: "text",
+      id: "school",
+    },
+    {
+      type: "text",
+      id: "degree",
+    },
+    {
+      type: "date",
+      id: "startYear",
+    },
+    {
+      type: "date",
+      id: "endYear",
+    },
+    { type: "number", id: "gpa" },
+  ];
   return (
     <div>
       <form onSubmit={onSubmit}>
