@@ -35,7 +35,7 @@ export default function Form({ onCancel, onSave }) {
       gpa: "",
     });
   }
-  const fieldProps = [
+  const fieldConfigurations = [
     {
       type: "text",
       id: "school",
@@ -54,6 +54,7 @@ export default function Form({ onCancel, onSave }) {
     },
     { type: "number", id: "gpa" },
   ];
+
   return (
     <div>
       <form onSubmit={onSubmit}>
