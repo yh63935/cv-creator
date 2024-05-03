@@ -58,36 +58,18 @@ export default function Form({ onCancel, onSave }) {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <Field
-          type="text"
-          id="school"
-          onChange={handleChange}
-          value={sectionEntry.school}
-        />
-        <Field
-          type="text"
-          id="degree"
-          onChange={handleChange}
-          value={sectionEntry.degree}
-        />
-        <Field
-          type="date"
-          id="startYear"
-          onChange={handleChange}
-          value={sectionEntry.startYear}
-        />
-        <Field
-          type="date"
-          id="endYear"
-          onChange={handleChange}
-          value={sectionEntry.endYear}
-        />
-        <Field
-          type="number"
-          id="gpa"
-          onChange={handleChange}
-          value={sectionEntry.gpa}
-        />
+        {fieldConfigurations.map((fieldConfiguration) => {
+          return (
+            <Field
+              key={fieldConfiguration.id}
+              type={fieldConfiguration.type}
+              id={fieldConfiguration.id}
+              onChange={handleChange}
+              value={sectionEntry[fieldConfiguration.id]}
+            />
+          );
+        })}
+
         <button type="submit">Save</button>
         <button onClick={onCancel}>Cancel</button>
       </form>
