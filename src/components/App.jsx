@@ -49,11 +49,37 @@ function App() {
     setIsEditing(false);
   }
 
+  const fieldConfigurations = [
+    {
+      type: "text",
+      id: "school",
+    },
+    {
+      type: "text",
+      id: "degree",
+    },
+    {
+      type: "date",
+      id: "startYear",
+    },
+    {
+      type: "date",
+      id: "endYear",
+    },
+    { type: "number", id: "gpa" },
+  ];
+
   return (
     <>
       <PersonalInfo />
       <button onClick={handleAdd}>Add Education</button>
-      {(isEditing && <Form onCancel={handleCancel} onSave={handleSave} />) || (
+      {(isEditing && (
+        <Form
+          onCancel={handleCancel}
+          onSave={handleSave}
+          fieldConfigurations={fieldConfigurations}
+        />
+      )) || (
         <EducationInfo
           onUpdate={handleUpdate}
           onDelete={handleDelete}

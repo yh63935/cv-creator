@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Field from "./Field";
-export default function Form({ onCancel, onSave }) {
+export default function Form({ onCancel, onSave, fieldConfigurations }) {
   const [sectionEntry, setSectionEntry] = useState({
     school: "",
     degree: "",
@@ -35,25 +35,6 @@ export default function Form({ onCancel, onSave }) {
       gpa: "",
     });
   }
-  const fieldConfigurations = [
-    {
-      type: "text",
-      id: "school",
-    },
-    {
-      type: "text",
-      id: "degree",
-    },
-    {
-      type: "date",
-      id: "startYear",
-    },
-    {
-      type: "date",
-      id: "endYear",
-    },
-    { type: "number", id: "gpa" },
-  ];
 
   return (
     <div>
