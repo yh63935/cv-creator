@@ -1,5 +1,5 @@
 // Field component that renders a div with label and input based on id, label, type, value, handleChange props
-export default function Field({ id, label, type, value, onChange }) {
+export default function Field({ id, type, onChange, value, label }) {
   return (
     <div>
       <label htmlFor={id}>{label}</label>
