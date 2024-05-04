@@ -51,22 +51,26 @@ function App() {
 
   const fieldConfigurations = [
     {
-      type: "text",
       id: "school",
-    },
-    {
       type: "text",
+      label: "School",
+    },
+    {
       id: "degree",
+      type: "text",
+      label: "Degree",
     },
     {
-      type: "date",
       id: "startYear",
+      type: "date",
+      label: "Start Year",
     },
     {
-      type: "date",
       id: "endYear",
+      type: "date",
+      label: "End Year",
     },
-    { type: "number", id: "gpa" },
+    { id: "gpa", type: "number", label: "GPA" },
   ];
 
   return (

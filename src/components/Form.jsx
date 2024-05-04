@@ -43,8 +43,9 @@ export default function Form({ onCancel, onSave, fieldConfigurations }) {
           return (
             <Field
               key={fieldConfiguration.id}
-              type={fieldConfiguration.type}
               id={fieldConfiguration.id}
+              type={fieldConfiguration.type}
+              label={fieldConfiguration.label}
               onChange={handleChange}
               value={sectionEntry[fieldConfiguration.id]}
             />
