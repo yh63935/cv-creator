@@ -1,6 +1,7 @@
 import PersonalInfo from "./personal-info/PersonalInfo";
 import Form from "./Form";
-import EducationInfo from "./EducationInfo";
+import SectionInfo from "./SectionInfo";
+
 import { useState } from "react";
 
 function App() {
@@ -84,10 +85,10 @@ function App() {
           fieldConfigurations={fieldConfigurations}
         />
       )) || (
-        <EducationInfo
+        <SectionInfo
           onUpdate={handleUpdate}
           onDelete={handleDelete}
-          educationData={savedData}
+          sectionData={savedData}
         />
       )}
     </>
