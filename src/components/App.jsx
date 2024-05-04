@@ -53,20 +53,24 @@ function App() {
     {
       id: "school",
       type: "text",
+      label: "School",
     },
     {
       id: "degree",
       type: "text",
+      label: "Degree",
     },
     {
       id: "startYear",
       type: "date",
+      label: "Start Year",
     },
     {
       id: "endYear",
       type: "date",
+      label: "End Year",
     },
-    { id: "gpa", type: "number" },
+    { id: "gpa", type: "number", label: "GPA" },
   ];
 
   return (
