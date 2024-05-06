@@ -111,6 +111,14 @@ function App() {
     },
   ];
 
+  const fieldConfigurationsArray = [
+    { type: "education", configurations: educationFieldConfigurations },
+    {
+      type: "professional",
+      configurations: professionalFieldConfigurations,
+    },
+  ];
+
   return (
     <>
       <PersonalInfo />
