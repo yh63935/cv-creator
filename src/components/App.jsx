@@ -78,6 +78,38 @@ function App() {
     },
     { id: "gpa", type: "number", label: "GPA" },
   ];
+  const professionalFieldConfigurations = [
+    {
+      id: "company",
+      type: "text",
+      label: "Company",
+    },
+    {
+      id: "jobTitle",
+      type: "text",
+      label: "Job Title",
+    },
+    {
+      id: "jobDescription",
+      type: "text",
+      label: "Description",
+    },
+    {
+      id: "startYear",
+      type: "text",
+      label: "Start Year",
+    },
+    {
+      id: "endYear",
+      type: "text",
+      label: "End Year",
+    },
+    {
+      id: "jobLocation",
+      type: "text",
+      label: "Location",
+    },
+  ];
 
   return (
     <>
