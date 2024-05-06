@@ -1,7 +1,7 @@
 import PersonalInfo from "./personal-info/PersonalInfo";
 import Form from "./Form";
 import SectionInfo from "./SectionInfo";
-
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
 function App() {
@@ -79,25 +79,76 @@ function App() {
     { id: "gpa", type: "number", label: "GPA" },
   ];
 
+  const professionalFieldConfigurations = [
+    {
+      id: "company",
+      type: "text",
+      label: "Company",
+    },
+    {
+      id: "jobTitle",
+      type: "text",
+      label: "Job Title",
+    },
+    {
+      id: "jobDescription",
+      type: "text",
+      label: "Description",
+    },
+    {
+      id: "startYear",
+      type: "text",
+      label: "Start Year",
+    },
+    {
+      id: "endYear",
+      type: "text",
+      label: "End Year",
+    },
+    {
+      id: "jobLocation",
+      type: "text",
+      label: "Location",
+    },
+  ];
+
+  const fieldConfigurationsArray = [
+    { type: "education", configurations: educationFieldConfigurations },
+    {
+      type: "professional",
+      configurations: professionalFieldConfigurations,
+    },
+  ];
+
   return (
     <>
       <PersonalInfo />
       <button onClick={handleAdd}>Add Education</button>
-      {(isEditing && (
-        <Form
-          onCancel={handleCancel}
-          onSave={handleSave}
-          fieldConfigurations={fieldConfigurations}
-        />
-      )) || (
-        <SectionInfo
-          onUpdate={handleUpdate}
-          onDelete={handleDelete}
-          sectionData={savedData}
-        />
-      )}
+      <div>
+        {fieldConfigurationsArray.map((fieldConfiguration) => {
+          return isEditing ? (
+            <Form
+              key={uuidv4()} // Don't forget to add a unique key
+              onCancel={handleCancel}
+              onSave={handleSave}
+              fieldConfigurations={fieldConfiguration.configurations}
+            />
+          ) : (
+            <SectionInfo
+              key={uuidv4()} // Don't forget to add a unique key
+              onUpdate={handleUpdate}
+              onDelete={handleDelete}
+              sectionData={savedData}
+            />
+          );
+        })}
+      </div>
     </>
   );
 }
 
 export default App;
+
+// Thoughts: would we need an isEditing state for each section then? what about savedData for each section? is there a better way
+// to do that then make a savedData state for each section? or should I save it all in one big array and set a property or something to indicate
+// what section it is part of? perhaps an array for each like 0 --> will be education? 1--> personal details?
