@@ -50,7 +50,7 @@ function App() {
     setIsEditing(false);
   }
 
-  const fieldConfigurations = [
+  const educationFieldConfigurations = [
     {
       id: "school",
       type: "text",
@@ -60,6 +60,11 @@ function App() {
       id: "degree",
       type: "text",
       label: "Degree",
+    },
+    {
+      id: "educationLocation",
+      type: "text",
+      label: "Location",
     },
     {
       id: "startYear",
