@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Field from "./Field";
-export default function Form({ onCancel, onSave, fieldConfigurations }) {
+export default function Form({ onCancel, onSave, type, fieldConfigurations }) {
   const [sectionEntry, setSectionEntry] = useState({
     school: "",
     degree: "",
@@ -24,7 +24,7 @@ export default function Form({ onCancel, onSave, fieldConfigurations }) {
 
     // Add a unique id to the education entry
     const sectionEntryWithId = { ...sectionEntry, id: uuidv4() };
-    onSave(sectionEntryWithId);
+    onSave(type, sectionEntryWithId);
 
     // Clear input values
     setSectionEntry({

@@ -5,29 +5,38 @@ import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
 function App() {
+  // SavedData state structure: [{ id:"", type: "", savedFormData: {}}]
   const [savedData, setSavedData] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editMode, setEditMode] = useState("add"); //'add' or 'update'
   const [editId, setEditId] = useState(null);
 
-  function handleSave(formData) {
+  function handleSave(type, formData) {
     // If edit mode is add, add new formData as an entry to savedData
     if (editMode === "add") {
-      setSavedData([...savedData, formData]);
+      console.log("type", type, "formData", formData);
+
+      setSavedData([
+        ...savedData,
+        { id: uuidv4(), type: type, savedFormData: formData },
+      ]);
     } else {
       // If edit mode is update, update data when saving
       // If savedData has the same ID as the one being edited, update the entry with the new form data
       // Otherwise, return the original entry
-      setSavedData(
-        savedData.map((record) => {
-          if (record.id === editId) {
-            return formData;
+      setSavedData((prevSavedData) => {
+        return prevSavedData.map((savedDataEntry) => {
+          if (savedDataEntry.id === editId) {
+            return {
+              ...savedDataEntry,
+              savedFormData: formData,
+            };
           }
-          return record;
-        })
-      );
+          return savedDataEntry;
+        });
+      });
     }
-    setIsEditing(false);
+    setIsEditing(!isEditing);
   }
 
   function handleAdd() {
@@ -131,9 +140,12 @@ function App() {
               key={uuidv4()} // Don't forget to add a unique key
               onCancel={handleCancel}
               onSave={handleSave}
+              type={fieldConfiguration.type}
               fieldConfigurations={fieldConfiguration.configurations}
             />
           ) : (
+            //   <p></p>
+            // );
             <SectionInfo
               key={uuidv4()} // Don't forget to add a unique key
               onUpdate={handleUpdate}
@@ -149,6 +161,5 @@ function App() {
 
 export default App;
 
-// Thoughts: would we need an isEditing state for each section then? what about savedData for each section? is there a better way
-// to do that then make a savedData state for each section? or should I save it all in one big array and set a property or something to indicate
-// what section it is part of? perhaps an array for each like 0 --> will be education? 1--> personal details?
+// savedData array with type
+// when you press button with type, add it to the savedData with that type property
