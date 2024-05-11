@@ -7,15 +7,17 @@ export default function SectionInfo({ onUpdate, onDelete, sectionData }) {
         return (
           <li key={sectionDataEntry.id}>
             {/* Render the fields of the section if the field is not id */}
-            {Object.entries(sectionDataEntry).map(([field, value]) => {
-              return (
-                field !== "id" && (
-                  <p key={field} className={field}>
-                    {value}
-                  </p>
-                )
-              );
-            })}
+            {Object.entries(sectionDataEntry.savedFormData).map(
+              ([field, value]) => {
+                return (
+                  field !== "id" && (
+                    <p key={field} className={field}>
+                      {value}
+                    </p>
+                  )
+                );
+              }
+            )}
             <button onClick={() => onUpdate(sectionDataEntry.id)}>Edit</button>
             <button onClick={() => onDelete(sectionDataEntry.id)}>
               Delete
