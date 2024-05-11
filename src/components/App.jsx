@@ -5,54 +5,38 @@ import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
 function App() {
+  // SavedData state structure: [{ id:"", type: "", savedFormData: {}}]
   const [savedData, setSavedData] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editMode, setEditMode] = useState("add"); //'add' or 'update'
   const [editId, setEditId] = useState(null);
-
-  // savedData can have [{type: , savedData}, {type: , savedData}]
-  // savedData right now is [sectionEntry, sectionEntry, sectionEntry]
-  // [{type:education, savedFormData:[sectionEntry, sectionEntry]}
 
   function handleSave(type, formData) {
     // If edit mode is add, add new formData as an entry to savedData
     if (editMode === "add") {
       console.log("type", type, "formData", formData);
 
-      setSavedData(
-        [...savedData, { type: type, savedFormData: [formData] }]
-        // savedData.map((record) => {
-        //   console.log("record", record);
-        //   if (record.type === type) {
-        //     console.log("recordtype", record.type);
-
-        //     return {
-        //       ...record,
-        //       savedFormData: record.savedFormData.push(formData),
-        //     };
-        //   } else {
-        //     return record;
-        //   }
-        // })
-      );
-      console.log("savedData", savedData);
-      // setSavedData([...savedData, { savedFormData: formData }]);
+      setSavedData([
+        ...savedData,
+        { id: uuidv4(), type: type, savedFormData: formData },
+      ]);
     } else {
       // If edit mode is update, update data when saving
       // If savedData has the same ID as the one being edited, update the entry with the new form data
       // Otherwise, return the original entry
-      setSavedData(
-        savedData.map((record) => {
-          return record.savedFormData.map((savedFormDataRecord) => {
-            if (savedFormDataRecord.id === editId) {
-              return formData;
-            }
-            return savedFormDataRecord;
-          });
-        })
-      );
+      setSavedData((prevSavedData) => {
+        return prevSavedData.map((savedDataEntry) => {
+          if (savedDataEntry.id === editId) {
+            return {
+              ...savedDataEntry,
+              savedFormData: formData,
+            };
+          }
+          return savedDataEntry;
+        });
+      });
     }
-    setIsEditing(false);
+    setIsEditing(!isEditing);
   }
 
   function handleAdd() {
@@ -160,16 +144,15 @@ function App() {
               fieldConfigurations={fieldConfiguration.configurations}
             />
           ) : (
-            <p></p>
+            //   <p></p>
+            // );
+            <SectionInfo
+              key={uuidv4()} // Don't forget to add a unique key
+              onUpdate={handleUpdate}
+              onDelete={handleDelete}
+              sectionData={savedData}
+            />
           );
-          // (
-          //   <SectionInfo
-          //     key={uuidv4()} // Don't forget to add a unique key
-          //     onUpdate={handleUpdate}
-          //     onDelete={handleDelete}
-          //     sectionData={savedData}
-          //   />
-          // );
         })}
       </div>
     </>
