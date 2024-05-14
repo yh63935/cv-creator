@@ -135,6 +135,14 @@ function App() {
       <button onClick={handleAdd}>Add Education</button>
       <div>
         {fieldConfigurationsArray.map((fieldConfiguration) => {
+          // Filter saved data by fieldConfiguration type
+          const filteredTypeData = savedData.filter(
+            (savedDataEntry) => savedDataEntry.type === fieldConfiguration.type
+          );
+
+          {
+            console.log("SectionInfo for", fieldConfiguration.type);
+          }
           return isEditing ? (
             <Form
               key={uuidv4()} // Don't forget to add a unique key
@@ -150,7 +158,7 @@ function App() {
               key={uuidv4()} // Don't forget to add a unique key
               onUpdate={handleUpdate}
               onDelete={handleDelete}
-              sectionData={savedData}
+              sectionData={filteredTypeData}
             />
           );
         })}
@@ -160,6 +168,3 @@ function App() {
 }
 
 export default App;
-
-// savedData array with type
-// when you press button with type, add it to the savedData with that type property
