@@ -10,6 +10,7 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [editMode, setEditMode] = useState("add"); //'add' or 'update'
   const [editId, setEditId] = useState(null);
+  const [editType, setEditType] = useState(null);
 
   function handleSave(type, formData) {
     // If edit mode is add, add new formData as an entry to savedData
@@ -39,9 +40,10 @@ function App() {
     setIsEditing(!isEditing);
   }
 
-  function handleAdd() {
+  function handleAdd(editType) {
     setIsEditing(true);
     setEditMode("add");
+    setEditType(editType);
   }
 
   function handleUpdate(id) {
@@ -129,6 +131,9 @@ function App() {
     },
   ];
 
+  // configuration Types ,education professional etc
+  // then loop through these to create a section for each with the form functionality and section info functionality
+
   return (
     <>
       <PersonalInfo />
@@ -143,23 +148,29 @@ function App() {
           {
             console.log("SectionInfo for", fieldConfiguration.type);
           }
-          return isEditing ? (
-            <Form
-              key={uuidv4()} // Don't forget to add a unique key
-              onCancel={handleCancel}
-              onSave={handleSave}
-              type={fieldConfiguration.type}
-              fieldConfigurations={fieldConfiguration.configurations}
-            />
-          ) : (
-            //   <p></p>
-            // );
-            <SectionInfo
-              key={uuidv4()} // Don't forget to add a unique key
-              onUpdate={handleUpdate}
-              onDelete={handleDelete}
-              sectionData={filteredTypeData}
-            />
+          return (
+            <div key={uuidv4()}>
+              {" "}
+              <button onClick={() => handleAdd(fieldConfiguration.type)}>
+                Add {fieldConfiguration.type}
+              </button>{" "}
+              {isEditing && editType === fieldConfiguration.type ? (
+                <Form
+                  key={uuidv4()}
+                  onCancel={handleCancel}
+                  onSave={handleSave}
+                  type={fieldConfiguration.type}
+                  fieldConfigurations={fieldConfiguration.configurations}
+                />
+              ) : (
+                <SectionInfo
+                  key={uuidv4()}
+                  onUpdate={handleUpdate}
+                  onDelete={handleDelete}
+                  sectionData={filteredTypeData}
+                />
+              )}{" "}
+            </div>
           );
         })}
       </div>
